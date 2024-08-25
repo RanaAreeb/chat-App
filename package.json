@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
 "scripts": {
-  "start": "serve -s dist --no-dev",
+  "start": "serve -s dist",
   "build": "vite build",
   "lint": "eslint .",
   "preview": "vite preview"
 }
+
 
 ,
   "dependencies": {
