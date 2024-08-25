@@ -10,7 +10,7 @@ const AuthPage = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     // Post the username to the API
-    axios.post('https://chat-app-production-ae8d.up.railway.app/authenticate', { username })
+    axios.post('http://localhost:3001/authenticate', { username })
       .then(r => props.onAuth({ ...r.data, secret: username }))
       .catch(e => console.log('error', e));
   }
