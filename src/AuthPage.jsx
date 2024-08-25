@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import exampleImage from './assets/img.jpg'; // Replace '.jpg' with the actual file extension
- // Ensure the correct path
+import exampleImage from './assets/img.jpg'; // Ensure the correct file extension and path
 
 const AuthPage = (props) => {
+  // State to manage the username input value
+  const [username, setUsername] = useState('');
+
+  // Function to handle form submission
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://chat-app-production-ae8d.up.railway.app/authenticate', { username: value })
-  .then(r => props.onAuth({ ...r.data, secret: value }))
-  .catch(e => console.log('error', e));
+    // Post the username to the API
+    axios.post('https://chat-app-production-ae8d.up.railway.app/authenticate', { username })
+      .then(r => props.onAuth({ ...r.data, secret: username }))
+      .catch(e => console.log('error', e));
   }
+
   return (
     <div className="background">
       <form onSubmit={onSubmit} className="form-card">
@@ -20,7 +25,13 @@ const AuthPage = (props) => {
 
         <div className="auth">
           <div className="auth-label">Username</div>
-          <input className="auth-input" name="username" />
+          <input
+            className="auth-input"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
           <button className="auth-button" type="submit">
             Enter
           </button>
